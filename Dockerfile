@@ -49,4 +49,4 @@ ENV SHELL=/bin/bash
 ENV USER=condauser
 WORKDIR /home/condauser/notebooks
 
-CMD $PY3PATH/ipython notebook
+CMD $PY2PATH/ipython notebook
