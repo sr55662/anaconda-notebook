@@ -39,15 +39,7 @@ USER condauser
 
 # Copy notebook config into ipython directory
 # Make sure our user owns the directory
-USER root
-RUN  apt-get --purge -y autoremove wget && \
-	cp /tmp/ipython_notebook_config.py /home/condauser/.ipython/profile_default/ && \
-	cp /tmp/matplotlib_nb_init.py /home/condauser/.ipython/profile_default/startup && \
-	chown condauser:condauser /home/condauser -R
 
-# Set persistent environment variables for python3 and python2
-ENV PY2PATH=/home/condauser/anaconda3/envs/python2/bin
-ENV PY3PATH=/home/condauser/anaconda3/bin
 
 
 
@@ -60,4 +52,4 @@ ENV SHELL=/bin/bash
 ENV USER=condauser
 WORKDIR /home/condauser/notebooks
 
-CMD ipython notebook 
+CMD ipython notebook --ipython-dir=/home/condauser/notebooks
