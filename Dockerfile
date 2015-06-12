@@ -60,4 +60,4 @@ ENV SHELL=/bin/bash
 ENV USER=condauser
 WORKDIR /home/condauser/notebooks
 
-CMD ipython notebook
+CMD ipython notebook 
