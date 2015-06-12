@@ -18,7 +18,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
 
 # Create conda user, get anaconda by web or locally
 RUN useradd --create-home --home-dir /home/condauser --shell /bin/bash condauser
-RUN /tmp/get_anaconda.sh
+
 FROM debian:7.4
 
 MAINTAINER Travis Swicegood
