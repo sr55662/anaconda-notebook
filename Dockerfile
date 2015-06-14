@@ -1,24 +1,3 @@
-FROM debian:jessie
-MAINTAINER Nick Roth "nlr06886@gmail.com"
-
-# Link in our build files to the docker image
-ADD src/ /tmp
-
-# Run all ubuntu updates and apt-get installs
-RUN export DEBIAN_FRONTEND=noninteractive && \
-	apt-get update && \
-	apt-get upgrade -y && \
-	apt-get install -y git \
-		wget \
-		bzip2 \
-		build-essential \
-		python-dev \
-		gfortran \
-	&& apt-get clean
-
-# Create conda user, get anaconda by web or locally
-RUN useradd --create-home --home-dir /home/condauser --shell /bin/bash condauser
-
 FROM debian:7.4
 
 MAINTAINER Travis Swicegood
@@ -32,16 +11,8 @@ RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
 
 ENV PATH /opt/conda/bin:$PATH
 
-# Run all python installs
-# Perform any cleanup of the install as needed
-USER condauser
-
-
-# Copy notebook config into ipython directory
-# Make sure our user owns the directory
-
-
-
+# Create conda user, get anaconda by web or locally
+RUN useradd --create-home --home-dir /home/condauser --shell /bin/bash condauser
 
 # Setup our environment for running the ipython notebook
 # Setting user here makes sure ipython notebook is run as user, not root
@@ -52,4 +23,4 @@ ENV SHELL=/bin/bash
 ENV USER=condauser
 WORKDIR /home/condauser/notebooks
 
-CMD ipython notebook --ipython-dir=/home/condauser/notebooks
+CMD ipython notebook 
