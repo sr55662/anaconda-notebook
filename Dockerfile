@@ -23,4 +23,4 @@ ENV SHELL=/bin/bash
 ENV USER=condauser
 WORKDIR /home/condauser/notebooks
 
-CMD ipython notebook --ip=0.0.0.0
+CMD ipython notebook --ip=0.0.0.0 --pylab inline --browser=no
