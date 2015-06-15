@@ -2,7 +2,7 @@ FROM debian:7.4
 
 MAINTAINER Travis Swicegood
 
-RUN apt-get update && apt-get install -y wget bzip2 ca-certificates
+RUN apt-get update && apt-get install -y wget bzip2 ca-certificates python-qt4
 RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
     wget --quiet https://repo.continuum.io/archive/Anaconda-2.2.0-Linux-x86_64.sh && \
     /bin/bash /Anaconda-2.2.0-Linux-x86_64.sh -b -p /opt/conda && \
@@ -23,4 +23,4 @@ ENV SHELL=/bin/bash
 ENV USER=condauser
 WORKDIR /home/condauser/notebooks
 
-CMD ipython notebook --ip=0.0.0.0 --pylab inline --browser=no
+CMD ipython notebook --ip=0.0.0.0  --browser=no
